@@ -2,16 +2,7 @@ import React from "react";
 import Entry from "./Entry";
 import emojipedia from "../emojipedia";
 
-function createEntry(emojiTerm) {
-  return (
-    <Entry
-      key={emojiTerm.id}
-      emoji={emojiTerm.emoji}
-      name={emojiTerm.name}
-      description={emojiTerm.meaning}
-    />
-  );
-}
+//properties are fed by the function app emojipedia.map
 
 function App() {
   return (
@@ -19,7 +10,18 @@ function App() {
       <h1>
         <span>emojipedia</span>
       </h1>
-      <dl className="dictionary">{emojipedia.map(createEntry)}</dl>
+      <dl className="dictionary">
+        {emojipedia.map(function createEntry(emojiTerm) {
+          return (
+            <Entry
+              key={emojiTerm.id}
+              emoji={emojiTerm.emoji}
+              name={emojiTerm.name}
+              description={emojiTerm.meaning}
+            />
+          );
+        })}
+      </dl>
     </div>
   );
 }
